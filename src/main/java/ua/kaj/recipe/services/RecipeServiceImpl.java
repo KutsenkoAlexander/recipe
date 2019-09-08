@@ -10,11 +10,11 @@ import java.util.Set;
 
 @Slf4j
 @Service
-public class RecipeServideImpl implements RecipeService {
+public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    public RecipeServideImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
