@@ -1,27 +1,22 @@
 package ua.kaj.recipe.repositories;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.kaj.recipe.domain.UnitOfMeasure;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class UnitOfMeasureRepositoryIT {
 
     @Autowired
     UnitOfMeasureRepository unitOfMeasureRepository;
-
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void findByDescription() {
