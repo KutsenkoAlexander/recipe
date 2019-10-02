@@ -4,22 +4,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.kaj.recipe.services.RecipeService;
+import ua.kaj.recipe.services.datajpa.CrudService;
 
 @Slf4j
 @Controller
 public class IndexController {
 
-    private final RecipeService recipeService;
+    private final CrudService recipeService;
 
-    public IndexController(RecipeService recipeService) {
+    public IndexController(CrudService recipeService) {
         this.recipeService = recipeService;
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage(Model model) {
+    public String getIndexPage(final Model model) {
         log.debug("Getting Index page.");
-        model.addAttribute("recipes", recipeService.getRecipes());
+        model.addAttribute("recipes", recipeService.findAll());
         return "index";
     }
 }

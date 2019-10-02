@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import ua.kaj.recipe.domain.Recipe;
-import ua.kaj.recipe.services.RecipeServiceImpl;
+import ua.kaj.recipe.services.datajpa.RecipeServiceImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -51,12 +51,12 @@ public class IndexControllerTest {
         recipes.add(recipe1);
         recipes.add(new Recipe());
 
-        when(recipeService.getRecipes()).thenReturn(recipes);
+        when(recipeService.findAll()).thenReturn(recipes);
 
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
         assertEquals("index", controller.getIndexPage(model));
-        verify(recipeService, times(1)).getRecipes();
+        verify(recipeService, times(1)).findAll();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
         assertEquals(2, argumentCaptor.getValue().size());
     }
