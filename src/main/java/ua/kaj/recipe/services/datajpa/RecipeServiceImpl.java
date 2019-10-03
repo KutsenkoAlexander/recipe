@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.kaj.recipe.domain.Ingredient;
 import ua.kaj.recipe.domain.Recipe;
 import ua.kaj.recipe.repositories.RecipeRepository;
+import ua.kaj.recipe.services.CrudService;
 
 import java.util.HashSet;
 import java.util.Optional;

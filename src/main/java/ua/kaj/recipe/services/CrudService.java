@@ -1,4 +1,4 @@
-package ua.kaj.recipe.services.datajpa;
+package ua.kaj.recipe.services;
 
 import ua.kaj.recipe.domain.Recipe;
 
