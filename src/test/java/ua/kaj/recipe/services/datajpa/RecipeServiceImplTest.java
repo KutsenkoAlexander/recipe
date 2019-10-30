@@ -11,8 +11,10 @@ import ua.kaj.recipe.repositories.RecipeRepository;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
@@ -31,11 +33,14 @@ public class RecipeServiceImplTest {
 
     @Test
     void findAll() {
+        Set<Recipe> recipeData = new TreeSet<>(Recipe::compareTo);
         Recipe recipe = new Recipe();
-        Set<Recipe> recipeData = new HashSet<>();
+        recipe.setId(recipeId);
         recipeData.add(recipe);
         when(recipeRepository.findAll()).thenReturn(recipeData);
-        assertEquals(recipeService.findAll().size(), 1);
+        Set<Recipe> recipes = recipeService.findAll();
+        assertEquals(recipes.size(), 1);
+        assertNotNull(recipes, "Recipes not found");
         verify(recipeRepository, times(1)).findAll();
     }
 
@@ -44,9 +49,11 @@ public class RecipeServiceImplTest {
         Recipe recipe = new Recipe();
         recipe.setId(recipeId);
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(recipe));
-        Optional<Recipe> recipeOptional = recipeService.findById(recipeId);
-        assertEquals(recipeId, recipeOptional.get().getId());
+        Recipe foundRecipe = recipeService.findById(recipeId);
+        assertEquals(recipeId, foundRecipe.getId());
+        assertNotNull(foundRecipe, "Recipes not found");
         verify(recipeRepository, times(1)).findById(recipeId);
+        verify(recipeRepository, never()).findAll();
     }
 
     @Test
@@ -64,7 +71,7 @@ public class RecipeServiceImplTest {
         Recipe recipe = new Recipe();
         recipe.setId(recipeId);
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(recipe));
-        assertEquals(Optional.of(recipe), recipeService.findById(recipeId));
+        assertEquals(Optional.of(recipe).get(), recipeService.findById(recipeId));
         doNothing().when(recipeRepository).delete(recipe);
         recipeService.delete(recipe);
         assertEquals(0, recipeService.findAll().size());
@@ -75,7 +82,7 @@ public class RecipeServiceImplTest {
         Recipe recipe = new Recipe();
         recipe.setId(recipeId);
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(recipe));
-        assertEquals(Optional.of(recipe), recipeService.findById(recipeId));
+        assertEquals(Optional.of(recipe).get(), recipeService.findById(recipeId));
         doNothing().when(recipeRepository).deleteById(recipeId);
         recipeService.deleteById(recipeId);
         assertEquals(0, recipeService.findAll().size());

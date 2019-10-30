@@ -7,9 +7,9 @@ import ua.kaj.recipe.domain.Recipe;
 import ua.kaj.recipe.repositories.RecipeRepository;
 import ua.kaj.recipe.services.CrudService;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Slf4j
 @Service
@@ -24,14 +24,18 @@ public class RecipeServiceImpl implements CrudService<Recipe> {
     @Override
     public Set<Recipe> findAll() {
         log.debug("Service in an action.");
-        Set<Recipe> recipes = new HashSet<>();
+        Set<Recipe> recipes = new TreeSet<>(Recipe::compareTo);
         recipeRepository.findAll().forEach(recipes :: add);
         return recipes;
     }
 
     @Override
-    public Optional<Recipe> findById(Long id) {
-        return recipeRepository.findById(id);
+    public Recipe findById(Long id) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe not found");
+        }
+        return recipeOptional.get();
     }
 
     @Override
