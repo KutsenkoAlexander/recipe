@@ -1,5 +1,6 @@
 package ua.kaj.recipe.services;
 
+import ua.kaj.recipe.commands.RecipeCommand;
 import ua.kaj.recipe.domain.Recipe;
 
 import java.util.Set;
@@ -14,4 +15,6 @@ public interface CrudService<T> {
     void delete(Recipe recipe);
 
     void deleteById(Long id);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
