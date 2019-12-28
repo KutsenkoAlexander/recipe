@@ -18,6 +18,12 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Main</a></li>
+        <li class="nav-item"><a class="nav-link" href="/recipe/new">Create</a></li>
+    </ul>
+</nav>
 <div style="width: 50rem; margin:auto;">
     <form th:object="${recipe}" th:action="@{/recipe/}">
         <input type="hidden" th:field="*{id}"/>
