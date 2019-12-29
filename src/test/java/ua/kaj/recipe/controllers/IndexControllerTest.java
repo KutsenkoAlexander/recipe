@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import ua.kaj.recipe.domain.Recipe;
-import ua.kaj.recipe.services.datajpa.RecipeServiceImpl;
+import ua.kaj.recipe.services.RecipeServiceImpl;
 
 import java.util.HashSet;
 import java.util.Set;

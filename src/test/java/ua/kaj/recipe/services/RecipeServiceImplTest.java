@@ -1,9 +1,10 @@
-package ua.kaj.recipe.services.datajpa;
+package ua.kaj.recipe.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import ua.kaj.recipe.commands.RecipeCommand;
 import ua.kaj.recipe.converters.RecipeCommandToRecipe;
 import ua.kaj.recipe.converters.RecipeToRecipeCommand;
 import ua.kaj.recipe.domain.Ingredient;
@@ -115,5 +116,25 @@ public class RecipeServiceImplTest {
         Set<Recipe> foundRecipes = recipeService.findByIngredient(ingredient);
         assertEquals(1, foundRecipes.size());
         verify(recipeRepository, times(1)).findByIngredients(ingredient);
+    }
+
+    @Test
+    public void getRecipeCoomandByIdTest() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(1L);
+
+        when(recipeToRecipeCommand.convert(any())).thenReturn(recipeCommand);
+
+        RecipeCommand commandById = recipeService.findCommandById(1L);
+
+        assertNotNull("Null recipe returned", String.valueOf(commandById));
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
     }
 }

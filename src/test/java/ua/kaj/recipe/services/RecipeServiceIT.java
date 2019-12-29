@@ -1,4 +1,4 @@
-package ua.kaj.recipe.services.datajpa;
+package ua.kaj.recipe.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
