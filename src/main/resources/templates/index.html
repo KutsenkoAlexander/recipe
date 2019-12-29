@@ -11,6 +11,12 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+    <style>
+        .non_margin_bottom{
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark light">
@@ -21,23 +27,25 @@
 </nav>
     <div class="card" style="width: 50rem; margin: 2rem auto 0 auto;">
         <div class="card-header">
-            <h1>My Recipe! Test!</h1>
+            <h1>My Recipe</h1>
         </div>
         <div class="card-body" style="padding: 0">
             <div th:if="${not #lists.isEmpty(recipes)}">
-                <table class="table">
-                    <thead class="thead-dark">
+                <table class="table non_margin_bottom">
+                    <thead class="thead-light">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Description</th>
                             <th scope="col">View</th>
+                            <th scope="col">Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="recipe : ${recipes}">
                             <td scope="row" th:text="${recipe.id}">123</td>
                             <td th:text="${recipe.description}">Tasty Goodnees</td>
-                            <td><a th:href="@{'/recipe/show/'+${recipe.id}}">View</a></td>
+                            <td><a th:href="@{'/recipe/'+${recipe.id}}+'/show'">View</a></td>
+                            <td><a th:href="@{'/recipe/'+${recipe.id}}+'/update'">Update</a></td>
                         </tr>
                     </tbody>
                 </table>

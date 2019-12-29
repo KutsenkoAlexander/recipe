@@ -15,6 +15,14 @@
         .card_top_margin {
             margin-top: 1rem;
         }
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        .non_margin_bottom{
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +37,7 @@
         <input type="hidden" th:field="*{id}"/>
         <div class="card card_top_margin">
             <div class="card-header">
-                <h1 class="panel-title">Edit Recipe Information</h1>
+                <h1 class="panel-title non_margin_bottom">Edit Recipe Information</h1>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -93,7 +101,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-11 ">
-                        <h1 class="panel-title">Ingredients</h1>
+                        <h1 class="panel-title non_margin_bottom">Ingredients</h1>
                     </div>
                     <div class="col-md-1">
                         <a class="btn btn-default" href="#" role="button">Edit</a>
@@ -103,12 +111,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul>
+                        <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
                             <li th:remove="all">1 Cup of milk</li>
                             <li th:remove="all">1 Teaspoon of chocolate</li>
                             <li th:each="ingredient : ${recipe.ingredients}"
                                 th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.getUnitOfMeasure().getDescription() +
+                                        ' ' + ingredient.getUom().getDescription() +
                                         ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
                             </li>
                         </ul>
@@ -118,7 +126,7 @@
         </div>
         <div class="card card_top_margin">
             <div class="card-header">
-                <h1 class="panel-title">Directions</h1>
+                <h1 class="panel-title non_margin_bottom">Directions</h1>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -130,7 +138,7 @@
         </div>
         <div class="card card_top_margin">
             <div class="card-header">
-                <h1 class="panel-title">Notes</h1>
+                <h1 class="panel-title non_margin_bottom">Notes</h1>
             </div>
             <div class="card-body">
                 <div class="row">

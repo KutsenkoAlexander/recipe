@@ -11,6 +11,16 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+    <style>
+        h3 {
+            margin-bottom: 0;
+        }
+
+        .non_margin_bottom{
+            margin-bottom: 0;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,7 +32,7 @@
 <div style="width: 50rem; margin: 2rem auto 0 auto;">
     <div class="card" style="margin-bottom: 2rem;">
         <div class="card-header">
-            <h3 class="card-title" th:text="${recipe.description}">Recipe Description Here!</h3>
+            <h3 class="card-title non_margin_bottom" th:text="${recipe.description}">Recipe Description Here!</h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -83,7 +93,7 @@
     </div>
     <div class="card" style="margin-bottom: 2rem;">
         <div class="card-header">
-            <h3 class="card-title">Ingredients</h3>
+            <h3 class="card-title non_margin_bottom">Ingredients</h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -102,7 +112,7 @@
     </div>
     <div class="card" style="margin-bottom: 2rem;">
         <div class="card-header">
-            <h3 class="card-title">Directions</h3>
+            <h3 class="card-title non_margin_bottom">Directions</h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -114,7 +124,7 @@
     </div>
     <div class="card" style="margin-bottom: 2rem;">
         <div class="card-header">
-            <h3 class="card-title">Notes</h3>
+            <h3 class="card-title non_margin_bottom">Notes</h3>
         </div>
         <div class="card-body">
             <div class="row">
