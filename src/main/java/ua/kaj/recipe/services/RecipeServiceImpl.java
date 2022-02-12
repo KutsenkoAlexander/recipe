@@ -54,6 +54,13 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void deleteById(Long id) {
+        if (id == null) {
+            log.warn("Unable delete recipe by nullable ID");
+            return;
+        }
+
+        log.debug("Deleting recipe by ID:{}", id);
+
         recipeRepository.deleteById(id);
     }
 

@@ -38,14 +38,16 @@
                             <th scope="col">Description</th>
                             <th scope="col">View</th>
                             <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="recipe : ${recipes}">
-                            <td scope="row" th:text="${recipe.id}">123</td>
+                            <td th:text="${recipe.id}">123</td>
                             <td th:text="${recipe.description}">Tasty Goodnees</td>
                             <td><a th:href="@{'/recipe/'+${recipe.id}}+'/show'">View</a></td>
                             <td><a th:href="@{'/recipe/'+${recipe.id}}+'/update'">Update</a></td>
+                            <td><a th:href="@{'/recipe/'+${recipe.id}}+'/delete'">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>
