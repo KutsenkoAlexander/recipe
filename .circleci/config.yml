@@ -13,9 +13,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
             - v1-dependencies- # fallback in case previous cache key is not found
-      - run:
-          - ./mvnw install -DskipTests
-          - ./mvnw integration-test
+      - run: ./mvnw integration-test
       - save_cache:
           paths:
             - ~/.m2
