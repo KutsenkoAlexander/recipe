@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Getter
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
-public class Ingredient {
+public class Ingredient implements Comparable<Ingredient> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,5 +38,10 @@ public class Ingredient {
     public Ingredient(String description, BigDecimal amount, Recipe recipe, UnitOfMeasure uom) {
         this(description, amount, uom);
         this.recipe = recipe;
+    }
+
+    @Override
+    public int compareTo(Ingredient ingredient) {
+        return this.id.compareTo(ingredient.id);
     }
 }

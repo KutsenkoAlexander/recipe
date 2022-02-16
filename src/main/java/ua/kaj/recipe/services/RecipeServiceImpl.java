@@ -1,5 +1,6 @@
 package ua.kaj.recipe.services;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,23 +16,16 @@ import java.util.TreeSet;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeCommandToRecipe recipeCommandToRecipe;
     private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository,
-                             RecipeCommandToRecipe recipeCommandToRecipe,
-                             RecipeToRecipeCommand recipeToRecipeCommand) {
-        this.recipeRepository = recipeRepository;
-        this.recipeCommandToRecipe = recipeCommandToRecipe;
-        this.recipeToRecipeCommand = recipeToRecipeCommand;
-    }
-
     @Override
     public Set<Recipe> findAll() {
-        log.debug("Service in an action.");
+        log.debug("Recipe Service :: find all");
         Set<Recipe> recipes = new TreeSet<>(Recipe::compareTo);
         recipeRepository.findAll().forEach(recipes :: add);
         return recipes;

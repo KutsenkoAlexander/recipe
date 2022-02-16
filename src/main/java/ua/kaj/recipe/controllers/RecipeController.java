@@ -1,5 +1,6 @@
 package ua.kaj.recipe.controllers;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.kaj.recipe.commands.RecipeCommand;
-import ua.kaj.recipe.services.RecipeServiceImpl;
+import ua.kaj.recipe.services.RecipeService;
 
 @Controller
+@AllArgsConstructor
 public class RecipeController {
-    private final RecipeServiceImpl recipeService;
 
-    public RecipeController(RecipeServiceImpl recipeService) {
-        this.recipeService = recipeService;
-    }
+    private final RecipeService recipeService;
 
     @GetMapping
     @RequestMapping("/recipe/{id}/show")
